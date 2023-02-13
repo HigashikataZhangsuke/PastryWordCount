@@ -1,6 +1,6 @@
 # PastryWordCount
 
-##For Pinchao
+## For Pinchao
 
 这是WordCount的Code。
 Testentry类负责生成每个VM中的Node，并让他们Scribe，计算。
