@@ -6,3 +6,7 @@
 Testentry类负责生成每个VM中的Node，并让他们Scribe各个Topic，计算Wordcount。
 WordcountApplication是具体的Scribe Client，负责处理数据与给出最后输出。
 Msg是消息类，包括了所有在Pastry中传递的SCribe Content 和 Message
+
+之前和师兄提到的问题出在application level(也就是Node to Node之间)的deliver函数处。我的逻辑是每收到一条消息，Node会在自己的Childlist里面寻找是谁给我发的这条消息并给那个Node的Counter加1。NullPointer 代表它找不到这个Node。所以我觉得可能出问题的地方就是getchildlist那边。但是实际测试下来Topic数量不多的时候也没有问题。
+
+目前我在尝试新的写法就是不初始化childlist，在收到消息的时候再构建/更新childlist，这样的话可能会没有这个NullPointer的问题。
